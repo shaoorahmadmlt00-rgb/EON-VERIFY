@@ -19,16 +19,26 @@ body{font-family:sans-serif;text-align:center;padding:40px;background:#f7f7f7}
 <script>
 const url = new URL(window.location.href);
 const code = url.searchParams.get("code");
-const validCodes = ["PRIM001","PRIM002","PRIM003"]; // add your real codes here
-if(validCodes.includes(code)){
+
+// one code = one batch
+const validCodes = new Set([
+  "PRIM-25-B1",
+  "PRIM-25-B2",
+  "PRIM-25-B3",
+  "PRIM-25-B4",
+  "PRIM-25-B5"
+]);
+
+if (code && validCodes.has(code)) {
   result.textContent = "✅ Original PRIM";
-  details.textContent = "Serial: "+code;
-  result.className="ok";
-}else{
+  details.textContent = "Batch: " + code + " | Manufactured by EON Fertilizer";
+  result.className = "ok";
+} else {
   result.textContent = "❌ Fake / Invalid Code";
   details.textContent = "This product may be counterfeit.";
-  result.className="bad";
+  result.className = "bad";
 }
+
 </script>
 </body>
 </html>
